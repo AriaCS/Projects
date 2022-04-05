@@ -1,4 +1,4 @@
--- DATA SOURCE: Published online at OurWorldInData.org Retrieved from: https://ourworldindata.org/coronavirus (online resource)
+-- DATA SOURCE: Retrieved from: https://ourworldindata.org/coronavirus (dates 2/24/2020 - 3/30/2022)
 -- Queries used for Tableau Project
 
 
