@@ -62,16 +62,3 @@ SELECT *, (rolling_vaccination_count/population)*100 as percent_rolling_vaccinat
 FROM #PercentPopulationVaccinated
 
 
--- Creating view to store data for visualizing the rolling percent of population vaccinated by continent, location, and date
-
-Create View PercentPopulationVaccinated as
-SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
-, SUM(CONVERT(bigint,vac.new_vaccinations)) OVER (Partition by dea.location ORDER BY dea.location,
-  dea.date) as rolling_vaccination_count
-FROM PortfolioProject..CovidDeaths dea
-JOIN PortfolioProject..CovidVaccinations vac
-	ON dea.location = vac.location
-	and dea.date = vac.date
-WHERE dea.continent is not null
---ORDER BY 2,3
-
