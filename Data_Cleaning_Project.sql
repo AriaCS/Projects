@@ -147,3 +147,124 @@ DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress
 ALTER TABLE PortfolioProject.dbo.NashvilleHousing
 DROP COLUMN SaleDate
 
+-- Data Cleaning functions BigQuery
+
+--1. Finding duplicatcates using DISTINCT
+
+SELECT DISTINCT customer_id
+FROM customer_data.customer_address
+
+--2. LENGTH function (> # of length) 
+
+SELECT state
+FROM customer_data.customer_address
+WHERE LENGTH (state) > 2
+
+--3. Extra spaces using TRIM
+
+SELECT DISTINCT customer_id
+FROM customer_data.customer_address
+WHERE TRIM(state) = 'OH'
+
+--4. Filtering substring for first 2 letters using SUBSTR(column, 1, 2) first 3 letters SUBSTR(column, 1, 3)
+
+SELECT customer_id
+FROM customer_data.customer_address
+WHERE
+  SUBSTR(country, 1, 2) = 'US'
+  
+--5. Extraneous variables using MIN and MAX
+
+SELECT
+  MIN(length) AS min_length
+  MAX(length) AS max_length
+FROM cars.car_info
+
+--6. Finding NUll Values
+
+SELECT *
+FROM cars.car_info
+WHERE column_name is NULL
+
+--7. Update cell
+
+UPDATE table_name
+SET
+  column_name = "four"
+WHERE
+  make = "dodge"
+  AND fuel_type = "gas"
+  AND body_style = "sedan";
+  
+--8. Mispelling changing "tow" to two
+
+UPDATE table_name
+SET
+  column_name = "two"
+WHERE
+  column_name = "tow";
+  
+--9. Converting one type of data to another using CAST
+
+SELECT CAST (column_name AS FLOAT64)
+FROM customer_data.customer_table
+ORDER BY
+  CAST (purchase_price AS FLOAT64) DESC
+
+--10. Pulling columns b/t certain dates
+
+SELECT date, purchase_price
+FROM table.name
+WHERE date BETWEEN '2020-12-01' AND '2020-12-31'
+
+--11. Adding strings together with CONCAT
+
+SELECT
+  CONCAT(product_code, product_color) AS new_product_code
+FROM table_name
+
+SELECT
+  CONCAT('first_name', ", 'last_name') AS full_name
+FROM table_name
+	 
+--12. COALESCE() skipping null values in calcs / returns only non-null values in a list
+-- ex. pull up procut_names, but if certain names are "null" pull up product_code
+
+SELECT 
+  COALESCE(product, product_code) AS product_info
+FROM table.name
+	 
+--13. Mispelling CASE statement
+
+SELECT customer_id
+  CASE
+  WHEN first_name = 'Tnoy' THEN 'Tony'
+  ELSE first_name
+  END AS cleaned_name
+	 
+--14. DELETE unused columns
+
+ALTER TABLE name
+DROP COLUMN owneraddress, name, sale
+	 
+	 
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
