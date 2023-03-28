@@ -1,5 +1,5 @@
-/* SQL: CTEs, Temp Tables, String Functions and Use Cases - TRIM, LTRIM, RTRIM, Replace, Substring, Upper, Lower, 
-Subqueries, Practice Interview Questions */
+# CTEs, Temp Tables, String Functions and Use Cases - TRIM, LTRIM, RTRIM, Replace, Substring, Upper, Lower, 
+Subqueries
 
 -- CTEs (Common Table Expression) 
 
@@ -162,3 +162,4 @@ SELECT id, first_name, last_name, department_id, max(salary)
 FROM ms_employee_salary
 GROUP BY id, first_name, last_name, department_id
 ORDER BY id ASC;
+
