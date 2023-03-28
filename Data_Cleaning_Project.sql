@@ -1,5 +1,5 @@
 
-/* Cleaning data in SQL queries */
+#Cleaning data in SQL queries 
 
 SELECT *
 FROM PortfolioProject.dbo.NashvilleHousing
