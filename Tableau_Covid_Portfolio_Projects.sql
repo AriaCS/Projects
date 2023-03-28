@@ -1,5 +1,7 @@
+# Queries used for Tableau Covid Dashboard Projects
+
 -- DATA SOURCE: Retrieved from: https://ourworldindata.org/coronavirus (dates 2/24/2020 - 3/30/2022)
--- Queries used for Tableau Covid Dashboard Projects
+
 
 
 -- 1. Global Numbers - double checking global numbers based off of: total_cases, total_deaths, and global death_percentage
