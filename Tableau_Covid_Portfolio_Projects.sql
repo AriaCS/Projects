@@ -62,3 +62,4 @@ WHERE dea.continent is not null
 
 SELECT *, (rolling_vaccination_count/population)*100 as percent_rolling_vaccination
 FROM #PercentPopulationVaccinated
+
