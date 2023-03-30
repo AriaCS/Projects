@@ -1,0 +1,62 @@
+#In this SQL project, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
+
+
+-- How many orders were placed in January? 
+
+SELECT count(orderID) 
+FROM BIT_Marketing_Database.jansales
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID' 
+
+
+-- How many of those orders were for an iPhone?
+
+SELECT count(Product) 
+FROM BIT_Marketing_Database.jansales
+WHERE Product = 'iPhone'
+
+
+-- Select the customer account numbers for all the orders that were placed in February.
+
+SELECT DISTINCT acctnum
+FROM BIT_Marketing_Database.customers customers
+INNER JOIN BIT_Marketing_Database.Febsales feb
+ON customers.order_id = feb.orderID
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID' 
+
+
+-- Which product was the cheapest one sold in January, and what was the price?
+
+SELECT product, min(price) 
+FROM BIT_Marketing_Database.JanSales Jan 
+GROUP BY product, price 
+ORDER BY price ASC
+LIMIT 1
+
+
+-- What is the total revenue for each product sold in January?
+
+SELECT product, sum(quantity)*price as total_revenue
+FROM BIT_Marketing_Database.JanSales 
+GROUP BY product
+
+
+-- Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+
+SELECT product, sum(quantity), sum(quantity)*price as total_revenue
+FROM BIT_Marketing_Database.Febsales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY product
+
+
+-- How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+
+SELECT count(distinct customers.acctnum), avg(quantity*price)
+FROM BIT_Marketing_Database.Febsales Feb
+LEFT JOIN BIT_Marketing_Database.customers Customers
+ON Feb.orderid = Customers.order_id
+WHERE Feb.Quantity > 2
+AND length(orderid) = 6 
+AND orderid <> 'Order ID'
+
