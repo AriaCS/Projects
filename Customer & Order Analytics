@@ -29,7 +29,7 @@ AND orderid <> 'Order ID'
 -- Which product was the cheapest one sold in January, and what was the price?
 
 SELECT product, min(price) 
-FROM BIT_Marketing_Database.JanSales Jan 
+FROM BIT_Marketing_Database.JanSales 
 GROUP BY product, price 
 ORDER BY price ASC
 LIMIT 1
@@ -93,8 +93,8 @@ GROUP BY product
 
 SELECT avg(quantity*price) AS average_amount_spent
 FROM BIT_Marketing_Database.FebSales Feb
-LEFT JOIN BIT_Marketing_Database.customers cust
-ON FEB.orderid = cust.order_id
+LEFT JOIN BIT_Marketing_Database.customers Cust
+ON Feb.orderid = Cust.order_id
 WHERE length(orderid) = 6 
 AND orderid <> 'Order ID'
 
@@ -103,15 +103,15 @@ AND orderid <> 'Order ID'
 
 SELECT sum(quantity)/count(cust.acctnum)
 FROM BIT_Marketing_Database.FebSales Feb
-LEFT JOIN BIT_Marketing_Database.customers cust
-ON FEB.orderid = cust.order_id
+LEFT JOIN BIT_Marketing_Database.customers Cust
+ON Feb.orderid = Cust.order_id
 WHERE length(orderid) = 6 
 AND orderid <> 'Order ID'
 
 
 -- Which product brought in the most revenue in January and how much revenue did it bring in total?
 
-SELECT product,  sum(quantity*price)as revenue
+SELECT product,  sum(quantity*price) as revenue
 FROM BIT_Marketing_Database.JanSales 
 GROUP BY product
 ORDER BY sum(quantity*price) desc 
